@@ -1,0 +1,114 @@
+global:
+  scrape_interval: 30s
+  evaluation_interval: 30s
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+        labels:
+          app: "prometheus"
+
+  - job_name: "FaceSwap"
+    scheme: https
+    scrape_timeout: 30s
+    metrics_path: /metrics
+    authorization:
+      type: Bearer
+      credentials_file: /etc/prometheus/secrets/hf_token
+    static_configs:
+      - targets:
+          - logicgoinfotechspaces-face-swap.hf.space
+        labels:
+          app: "Faceswap"
+
+  - job_name: "ImageEnhancer"
+    scheme: https
+    scrape_timeout: 30s
+    metrics_path: /metrics
+    authorization:
+      type: Bearer
+      credentials_file: /etc/prometheus/secrets/hf_token
+    static_configs:
+      - targets:
+          - logicgoinfotechspaces-image-enhancer.hf.space
+        labels:
+          app: "ImageEnhancer"
+
+  - job_name: "ImageGeneration"
+    scheme: https
+    scrape_timeout: 10s
+    metrics_path: /metrics
+    authorization:
+      type: Bearer
+      credentials_file: /etc/prometheus/secrets/hf_token
+    static_configs:
+      - targets:
+          - logicgoinfotechspaces-image-generation-gemini.hf.space
+        labels:
+          app: "ImageGeneration"
+
+  - job_name: "VideoGeneration"
+    scheme: https
+    scrape_timeout: 10s
+    metrics_path: /metrics
+    authorization:
+      type: Bearer
+      credentials_file: /etc/prometheus/secrets/hf_token
+    static_configs:
+      - targets:
+          - logicgoinfotechspaces-video-generator.hf.space
+        labels:
+          app: "VideoGeneration"
+
+  - job_name: "ImageGeneration-huggingface"
+    scheme: https
+    scrape_timeout: 10s
+    metrics_path: /metrics
+    authorization:
+      type: Bearer
+      credentials_file: /etc/prometheus/secrets/hf_token
+    static_configs:
+      - targets:
+          - logicgoinfotechspaces-imagegeneration-hf.hf.space
+        labels:
+          app: "ImageGeneration-huggingface"
+
+  - job_name: "BackgroundRemover"
+    scheme: https
+    scrape_timeout: 10s
+    metrics_path: /metrics
+    authorization:
+      type: Bearer
+      credentials_file: /etc/prometheus/secrets/hf_token
+    static_configs:
+      - targets:
+          - logicgoinfotechspaces-background-remover.hf.space
+        labels:
+          app: "BackgroundRemover"
+
+  - job_name: "Colorization"
+    scheme: https
+    scrape_timeout: 10s
+    metrics_path: /metrics
+    authorization:
+      type: Bearer
+      credentials_file: /etc/prometheus/secrets/hf_token
+    static_configs:
+      - targets:
+          - logicgoinfotechspaces-colorize-image.hf.space
+        labels:
+          app: "Colorization"
+
+  - job_name: "ObjectRemover"
+    scheme: https
+    scrape_timeout: 10s
+    metrics_path: /metrics
+    authorization:
+      type: Bearer
+      credentials_file: /etc/prometheus/secrets/hf_token
+    static_configs:
+      - targets:
+          - logicgoinfotechspaces-objectremover.hf.space
+        labels:
+          app: "ObjectRemover"
